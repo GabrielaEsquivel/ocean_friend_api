@@ -2,7 +2,7 @@
 
 OceanFriend API es el conjunto de servicios a consumir para el front[ OceanFriend FRONT](https://github.com/richirrim/ocean_friend_front).
 
-Contiene la configuración requerida para conectarse a la base de datos implementada en Postgress y configurada con Prisma. 
+Contiene la configuración requerida para conectarse a la base de datos implementada en Postgress y configurada con Prisma.
 
 Adicionalmente contiene algunas otras implementaciones que se detallarán más adelante.
 
@@ -50,10 +50,10 @@ User
 
 Alarm
 
-
 #### Tablas
-
 
 ### Servicios
 
-Los servicios implementados para el proyecto se encuentran en app/services/ los cuales son los siguientes:
+Los servicios implementados para el proyecto se encuentran en app/services/ los cuales pueden consultarse en el siguiente enlace a la documentación de [PostMan]():
+
+https://documenter.getpostman.com/view/20762518/UyxjF5uh
