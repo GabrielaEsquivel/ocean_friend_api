@@ -9,3 +9,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique @db.VarChar(255)
+  passwd String @db.VarChar(255)
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model Alarm {
+  id Int @id @default(autoincrement())
+  description String
+  location String
+  photo String @db.VarChar(255)
+  isSeen Boolean
+  isAttended Boolean
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
