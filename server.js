@@ -1,16 +1,32 @@
+
+
+const AlarmController = require('./app/controllers/AlarmController');
+const UserController = require('./app/controllers/UserController');
+
 const express = require('express');
 require('dotenv').config();
 const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
-const AlarmController = require('./app/controllers/AlarmController');
-const UserController = require('./app/controllers/UserController');
+// Cors
+
+const cors = require('cors');
+const corsOptions = {
+  origin: "http://localhost:8080"
+};
+app.use(cors(corsOptions));
+
 
 app.get('/', (req, res) => {
-  res.json({message: 'Server on!'});
+  res.json({ message: 'Server on!' });
 });
 /***  Alarms  */
 app.get('/alarms', async (req, res) => {
+  /* res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+   res.header(
+     'Access-Control-Allow-Headers',
+     'Origin, X-Requested-With, Content-Type, Accept'
+   );*/
   const allAlarms = await AlarmController.getAllAlarms();
   res.json(allAlarms);
 });
@@ -23,17 +39,17 @@ app.get('/alarms/last', async (req, res) => {
 app.post('/alarms/create', async (req, res) => {
   const alarm = req.body;
   const alarmCreated = await AlarmController.create(alarm)
-  return res.json({  alarmCreated });
+  return res.json({ alarmCreated });
 });
 
 app.put('/alarms/seen/:id', async (req, res) => {
-  const alarm = {id: parseInt(req.params.id), isSeen: req.body.isSeen }
+  const alarm = { id: parseInt(req.params.id), isSeen: req.body.isSeen }
   const updated = await AlarmController.editSeen(alarm)
   return res.json(updated);
 });
 
 app.put('/alarms/attend/:id', async (req, res) => {
-  const alarm = {id: parseInt(req.params.id), isAttended: req.body.isAttended }
+  const alarm = { id: parseInt(req.params.id), isAttended: req.body.isAttended }
   const updated = await AlarmController.editAttended(alarm)
   return res.json(updated);
 });
