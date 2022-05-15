@@ -35,8 +35,9 @@ jobs:
 
       - name: Run tests
         run: npm run test
-        # env:
-        #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        env:
+          DATABASE_URL: "postgresql://andrea:123456@localhost:5432/ocean_friend_bd?schema=public"
+
         # Tried this too, but didn't work.
 
       # - name: Upload coverage to Codecov
