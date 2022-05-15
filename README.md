@@ -1,6 +1,6 @@
 # Ocean Friend API
 
-OceanFriend API es el conjunto de servicios a consumir para el front[ OceanFriend FRONT](https://github.com/richirrim/ocean_friend_front).
+OceanFriend API es el conjunto de servicios a consumir para el front[ OceanFriend FRONT](https://github.com/richirrim/ocean_friend_front). Esta API permite el registro de alertas para notificar sobre la situación de alguna especie en peligro por la contaminación en las costas, playas o incluso, el oceáno. 
 
 Contiene la configuración requerida para conectarse a la base de datos implementada en Postgress y configurada con Prisma.
 
@@ -75,7 +75,6 @@ Las migraciones del presente proyecto se encuentran en **prisma/migrations**.
 
 Los modelados de la base de datos quedaron de la siguiente manera:
 
-
 **User** {
 
     Id de tipo numérico autoincremental
@@ -113,8 +112,6 @@ Los modelados de la base de datos quedaron de la siguiente manera:
 #### Tablas
 
 Estos son los esquemas de las tablas Alarm y User de la Base de Datos respectivamente.
-
-
 
 ![1652603142609.png](image/README/1652603142609.png)
 
@@ -162,35 +159,22 @@ var requestOptions = {
 
 `fetch("http://localhost:3052/alarms/attend/4", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
 
-
 ![1652601389283.png](image/README/1652601389283.png)
 
 **Implementación en Javascript:**
 
 `var raw = "{\n    `
 
-`var requestOptions = {
-  method: 'POST',
-  body: raw,
-  redirect: 'follow'
-}`;
+`var requestOptions = {   method: 'POST',   body: raw,   redirect: 'follow' }`;
 
-`fetch("http://localhost:3052/alarms/create", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));`
-
+`fetch("http://localhost:3052/alarms/create", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
 
 ![1652601403459.png](image/README/1652601403459.png)
 
 **Implementación en Javascript:**
 `var requestOptions = {   method: 'DELETE',   redirect: 'follow' };`
 
-`fetch("http://localhost:3052/alarms/1", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));`
-
+`fetch("http://localhost:3052/alarms/1", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
 
 ---
 
