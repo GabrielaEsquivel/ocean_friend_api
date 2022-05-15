@@ -1,0 +1,64 @@
+const util = require('util');
+const fs = require('fs');
+const TrainingApi = require("@azure/cognitiveservices-customvision-training");
+const PredictionApi = require("@azure/cognitiveservices-customvision-prediction");
+const msRest = require("@azure/ms-rest-js");
+const request = require('request');
+
+const trainingKey = "04cf1d83b9c04b1cb2c79bacab96480b";
+const trainingEndpoint = "https://seaturtleresource.cognitiveservices.azure.com/";
+const predictionKey = "b12aa9cc3279425e831e07dd0004fe71";
+const predictionResourceId = "/subscriptions/8e698d7a-1957-4d04-832d-0810459374c7/resourceGroups/seaTurtle/providers/Microsoft.CognitiveServices/accounts/seaTurtleResource-Prediction";
+const predictionEndpoint = "https://seaturtleresource-prediction.cognitiveservices.azure.com/";
+
+const publishIterationName = "classifyBeachUmbrela";
+
+const setTimeoutPromise = util.promisify(setTimeout);
+
+const credentials = new msRest.ApiKeyCredentials({
+    inHeader: {
+        "Training-key": trainingKey
+    }
+});
+const trainer = new TrainingApi.TrainingAPIClient(credentials, trainingEndpoint);
+const predictor_credentials = new msRest.ApiKeyCredentials({
+    inHeader: {
+        "Prediction-key": predictionKey
+    }
+});
+const predictor = new PredictionApi.PredictionAPIClient(predictor_credentials, predictionEndpoint);
+
+class ProyectBeach{
+    static consult(urlImage){
+        (async () => {
+            console.log("Creando Proyecto...");
+            const sampleProject = await trainer.getProject("ada673e6-1a24-47f5-84e1-0732ab09c7c7");
+            const sampleDataRoot = "src/assets";
+            let trainingIteration = await trainer.getProject(sampleProject.id);
+            let testFile;
+            if(urlImage !== null && urlImage !== undefined && urlImage !== ""){
+                // Fichero de salida con el directorio al que vamos a guardar
+                const filename = 'src/assets/Test/'.concat('test.jpg');
+                await function(urlImage, filename){
+                    request.head(urlImage, function(err, res, body){
+                        request(urlImage).pipe(fs.createWriteStream(filename)).on('close', function(){
+                            testFile = fs.readFileSync(`${sampleDataRoot}/Test/test.jpg`);
+                        });
+                    });
+                };
+            } else {
+                testFile = fs.readFileSync(`${sampleDataRoot}/Test/beach_clear.jpg`);
+            }
+        
+            const results = await predictor.classifyImage(sampleProject.id, publishIterationName, testFile);
+            // Show results
+            console.log("Resultado:");
+            results.predictions.forEach(predictedResult => {
+                console.log(`\t ${predictedResult.tagName}: ${(predictedResult.probability * 100.0).toFixed(2)}%`);
+                return `\t ${predictedResult.tagName}: ${(predictedResult.probability * 100.0).toFixed(2)}%`;
+            });
+        })()
+    }
+}
+
+module.exports = ProyectBeach;
