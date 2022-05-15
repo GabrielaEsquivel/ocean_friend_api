@@ -25,8 +25,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-
-
-      - run: npm run test
+      - name: Run Jest
+      uses: stefanoeb/jest-action@1.0.3
+      with:
+        jestArgs: test/services/ExplorerService.test.js
         env:
           DATABASE_URL: 'postgresql://root:postgres@localhost:5432/ocean_friend_bd'
