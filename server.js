@@ -1,5 +1,5 @@
 
-
+const ProyectBeach = require('./app/customVision/ProyectBeach');
 const AlarmController = require('./app/controllers/AlarmController');
 const UserController = require('./app/controllers/UserController');
 
@@ -71,6 +71,10 @@ app.post('/user/login', async (req, res) => {
   const user = req.body;
   const login = await UserController.login(user)
   return res.json(login);
+});
+
+app.post("/consult", (request, response) => {
+    return response.json(ProyectBeach.consult(request.body.urlImage));
 });
 
 app.listen(port, () => {
