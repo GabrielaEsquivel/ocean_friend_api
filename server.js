@@ -4,6 +4,7 @@ const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
 const AlarmController = require('./app/controllers/AlarmController');
+const UserController = require('./app/controllers/UserController');
 
 app.get('/', (req, res) => {
   res.json({message: 'Server on!'});
@@ -26,7 +27,6 @@ app.post('/alarms/create', async (req, res) => {
 });
 
 app.put('/alarms/seen/:id', async (req, res) => {
-  //const id = parseInt(req.params.id);
   const alarm = {id: parseInt(req.params.id), isSeen: req.body.isSeen }
   const updated = await AlarmController.editSeen(alarm)
   return res.json(updated);
@@ -43,12 +43,19 @@ app.delete('/alarms/:id', async (req, res) => {
   const deleted = await AlarmController.delete(id)
   return res.json(deleted);
 });
-/*app.get('/explorers/:id', async (req, res) => {
-  const id = req.params.id;
-  const explorer = await prisma.explorer.findUnique({ where: { id: parseInt(id) } });
-  res.json(explorer);
-});*/
 
+/** Users */
+app.post('/user/create', async (req, res) => {
+  const user = req.body;
+  const userCreated = await UserController.create(user)
+  return res.json(userCreated);
+});
+
+app.post('/user/login', async (req, res) => {
+  const user = req.body;
+  const login = await UserController.login(user)
+  return res.json(login);
+});
 
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);

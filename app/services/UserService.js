@@ -50,13 +50,13 @@ class UserService {
         return deleted ? true : false;
     }
 
-    async comparePassword(password, userPassword) {
+    static  comparePassword(password, userPassword) {
         return bcrypt.compare(password, userPassword);
       }
     
 
     static async login(user){
-        const userRegistered = await prisma.user.findUnique({where:{id: user.id}});
+        const userRegistered = await prisma.user.findUnique({where:{username: user.username}});
         if(!userRegistered){
             return {message: '¡Ese usuario no está registrado!', login: false};
         }
