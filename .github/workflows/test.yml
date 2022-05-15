@@ -20,8 +20,7 @@ jobs:
       matrix:
         node-version: [16.x]
         os: [ubuntu-latest, macOS-latest]
-
-    steps:
+  steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -40,14 +39,5 @@ jobs:
          uses: stefanoeb/jest-action@1.0.3
          with:
           jestArgs: test/services/AlarmService.test.js
-        # env:
-        #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        # Tried this too, but didn't work.
-
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v1
-      # upload to codecov after successful coverage tests.
-
-      # - name: Next build
-      #   run: npm run build
-      # # next build causes error on windows os
+       
+   
