@@ -74,7 +74,7 @@ app.post('/user/login', async (req, res) => {
 });
 
 app.post("/consult", (request, response) => {
-    return response.json(ProyectBeach.consult(request.params.urlImage));
+    return response.json(ProyectBeach.consult(request.body.urlImage));
 });
 
 app.listen(port, () => {
