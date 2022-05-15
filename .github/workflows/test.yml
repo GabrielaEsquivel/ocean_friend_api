@@ -1,22 +1,33 @@
-name: run integration testing
-on:
- push:
-  branches: [main]
- pull_request:
-  branches: [main, develop]
-jobs: 
-  integration-test: 
-   runs-on : ubuntu-latest
-   strategy: 
-    matrix:
-     node-version: [17.x]
+name: main
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
     services:
       postgres:
-        image: postgres:12-alpine
+        image: postgres
         env:
           POSTGRES_USER: andrea
-          POSTGRES_PASSWORD: localPswd
-          POSTGRES_DB: ocean_friend_bd
+          POSTGRES_PASSWORD: 123456
+          POSTGRES_DB: ocean_friend_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
-          - 5432: 5432
+          - 5432:5432
 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - run: npm ci
+
+      - run: npm run ci:test
+        env:
+          DATABASE_URL: 'postgresql://root:postgres@localhost:5432/ocean_friend_bd'
