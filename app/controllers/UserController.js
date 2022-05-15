@@ -23,4 +23,4 @@ class UserController {
 
 }
 
-module.exports = AlarmController;
+module.exports = UserController;
