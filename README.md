@@ -196,14 +196,12 @@ var requestOptions = {
 
 ### Dependencias
 
-Express
+Las dependencias instaladas en el proyecto se enlistan a continuación:
 
-Prisma
-
-Bcrypt
-
-Jest
-
-Dotenv
+* ***express**:* es un framework escrito en JavaScript y alojado dentro del entorno de ejecución NodeJS que permite crear aplicaciones web.
+* ***jest***: es un marco de prueba para Javascript que permite el desarrollo de pruebas dentro de las aplicaciones.
+* ***bcrypt***: es una función de hashing de passwords diseñado por Niels Provos y David Maxieres. Lleva incorporado un valor llamado  **salt** , que es un fragmento aleatorio que se usará para generar el hash asociado a la password, y se guardará junto con ella en la base de datos. La librería bcrypt nos permite elegir el valor de  **saltRounds** , que nos da el control sobre el coste de procesado de los datos.
+* ***prisma***: Toolkit de base de datos para proyectos con NodeJS. Funciona como un ORM de open-source.
+* ***dotenv***: es un módulo que permite cargar variables de ambiente (de un archivo .env) a través de process.env .
 
 ---
