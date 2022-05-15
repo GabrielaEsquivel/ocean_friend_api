@@ -6,23 +6,30 @@ Contiene la configuración requerida para conectarse a la base de datos implemen
 
 Adicionalmente contiene algunas otras implementaciones que se detallarán más adelante.
 
-### ¿Qué es PrismaDB?
+### Instalación del proyecto
 
-**Prisma** es un kit de herramientas de base de datos open source. Reemplaza los ORM tradicionales y facilita el acceso a la base de datos con un generador de consultas o query builder automáticamente generado y type-safe que se adapta a nuestro esquema de base de datos.
+Habiendo clonado el proyecto por alguna herramienta como SSH o Git Clone en un ambiente local desde este repositorio, hacer lo siguiente:
 
-### ¿Qué es una migración?
+1. Instalar las dependencias del proyecto.
 
-Una migración es algo parecido a un control de versiones, pero para una base de datos. Una migración trackea los cambios de la BD tanto en el código de un proyecto como en la misma BD.
+   ![1652598023568.png](image/README/1652598023568.png)
+2. Usando una terminal o Power Shell (dependiendo del OS), crear una base de datos en PostgresSQL que tenga por nombre ocean_friend_bd.
+   ![1652598210521.png](image/README/1652598210521.png)
+3. Configurar las variables de ambiente en el archivo .env creado por Prisma con las credenciales necesarias para conectarse a la base de datos creada en PostgresSQL según como indica la imagen:
 
-También funcionan como una propagación de cambios en los modelos que se ven reflejados en el esquema de una base de datos. Es decir, son archivos que contienen la estructura de una tabla. Con ellas podemos crear una nueva o modificar los campos que la componen, ejecutarla a través de la consola y el cambio se reflejará inmediatamente en la base de datos.
+   ![1652598504426.png](image/README/1652598504426.png)
+4. Posicionándonos en la branch develop, iniciar prisma con el siguiente comando para echar a andar una migración que creará las tablas "Alarm" y "User" respectivamente en la base de datos:
 
-Cabe aclarar que las migraciones sólo alteran la estructura de las tablas, no agregan ni modifican datos directamente, para esto tenemos los “seeders” y este ya es otro término totalmente aparte.
+   ![1652598538343.png](image/README/1652598538343.png)
+   ![1652599313627.png](image/README/1652599313627.png)
+5. El siguiente paso será correr el seeder que se encuentra en prisma/seed.js . El presente archivo contiene algunas inserciones de registros a la base de datos.
+   ![1652599797695.png](image/README/1652599797695.png)
+6. Una vez estén listos todos los puntos anteriores, será el momento de echar a andar el servidor.
+   Para eso se debe ejecutar el comando `npm run server` el cual automáticamente "encenderá" el mismo.
 
-Las migraciones del presente proyecto se encuentran en **prisma/migrations**.
+   ![1652600025706.png](image/README/1652600025706.png)
 
-### CRUD
-
-Create, Read, Update, Delete, son las funciones para la gestión de cualquier información en una base de datos.
+---
 
 ### ¿Qué es npx?
 
@@ -42,6 +49,26 @@ npx eslint yourfile.js
 
 De igual manera, npx también es capaz de ejecutar el paquete indicado sin tenerlo previamente instalado.
 
+---
+
+### CRUD
+
+Create, Read, Update, Delete, son las funciones para la gestión de cualquier información en una base de datos.
+
+### ¿Qué es PrismaDB?
+
+**Prisma** es un kit de herramientas de base de datos open source. Reemplaza los ORM tradicionales y facilita el acceso a la base de datos con un generador de consultas o query builder automáticamente generado y type-safe que se adapta a nuestro esquema de base de datos.
+
+### ¿Qué es una migración?
+
+Una migración es algo parecido a un control de versiones, pero para una base de datos. Una migración trackea los cambios de la BD tanto en el código de un proyecto como en la misma BD.
+
+También funcionan como una propagación de cambios en los modelos que se ven reflejados en el esquema de una base de datos. Es decir, son archivos que contienen la estructura de una tabla. Con ellas podemos crear una nueva o modificar los campos que la componen, ejecutarla a través de la consola y el cambio se reflejará inmediatamente en la base de datos.
+
+Cabe aclarar que las migraciones sólo alteran la estructura de las tablas, no agregan ni modifican datos directamente, para esto tenemos los “seeders” y este ya es otro término totalmente aparte.
+
+Las migraciones del presente proyecto se encuentran en **prisma/migrations**.
+
 ### Sobre la BD de este proyecto.
 
 #### Modelos
@@ -52,8 +79,26 @@ Alarm
 
 #### Tablas
 
+---
+
 ### Servicios
 
-Los servicios implementados para el proyecto se encuentran en app/services/ los cuales pueden consultarse en el siguiente enlace a la documentación de [PostMan]():
+Los servicios implementados para el proyecto se encuentran en app/services/ los cuales pueden consultarse en el siguiente enlace a la documentación de [PostMan](https://documenter.getpostman.com/view/20762518/UyxjF5uh):
 
 https://documenter.getpostman.com/view/20762518/UyxjF5uh
+
+---
+
+### Dependencias
+
+Express
+
+Prisma
+
+Bcrypt
+
+Jest
+
+Dotenv
+
+---
