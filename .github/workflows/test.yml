@@ -6,7 +6,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    generate:
+    cmds:
+      # Generate database bindings and data model types.
+      - npm i @prisma/client
+      - npx prisma generate
     steps:
     - uses: actions/checkout@v1
     - name: Run Jest
