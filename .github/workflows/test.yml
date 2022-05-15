@@ -1,14 +1,53 @@
 name: Run Tests in my project every push on GitHub
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      -develop
+  workflow_dispatch:
 
 jobs:
   build:
+    name: Build on node ${{ matrix.node-version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        os: [ubuntu-latest, macOS-latest]
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Run Jest
-      uses: stefanoeb/jest-action@1.0.3
-      with:
-        jestArgs: test/services/AlarmService.test.js
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+       - uses: actions/checkout@v1
+       - name: Run Jest
+         uses: stefanoeb/jest-action@1.0.3
+         with:
+          jestArgs: test/services/AlarmService.test.js
+        # env:
+        #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        # Tried this too, but didn't work.
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v1
+      # upload to codecov after successful coverage tests.
+
+      # - name: Next build
+      #   run: npm run build
+      # # next build causes error on windows os
