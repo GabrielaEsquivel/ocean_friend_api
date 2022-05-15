@@ -85,7 +85,54 @@ Alarm
 
 Los servicios implementados para el proyecto se encuentran en app/services/ los cuales pueden consultarse en el siguiente enlace a la documentación de [PostMan](https://documenter.getpostman.com/view/20762518/UyxjF5uh):
 
-https://documenter.getpostman.com/view/20762518/UyxjF5uh
+![1652600559419.png](image/README/1652600559419.png)
+
+**Implementación en Javascript**:
+
+
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+```
+
+
+`fetch("http://localhost:3052/alarms", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error))`
+
+![1652600612066.png](image/README/1652600612066.png)
+
+
+
+`var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};`
+
+`fetch("http://localhost:3052/alarms/last", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));`
+
+
+![1652600874357.png](image/README/1652600874357.png)
+
+
+
+`var requestOptions = {
+  method: 'PUT',
+  body: raw,
+  redirect: 'follow'
+};`
+
+`fetch("http://localhost:3052/alarms/seen/4", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));`
+
 
 ---
 
