@@ -33,7 +33,7 @@ class ProyectBeach{
         (async () => {
             console.log("Creando Proyecto...");
             const sampleProject = await trainer.getProject("ada673e6-1a24-47f5-84e1-0732ab09c7c7");
-            const sampleDataRoot = "src/assets";
+            const sampleDataRoot = "app/assets/test";
             let trainingIteration = await trainer.getProject(sampleProject.id);
             let testFile;
             if(urlImage !== null && urlImage !== undefined && urlImage !== ""){
