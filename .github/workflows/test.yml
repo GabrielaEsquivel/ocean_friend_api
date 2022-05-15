@@ -26,8 +26,7 @@ jobs:
         with:
           node-version: '14.x'
 
-      - run: npm ci
 
-      - run: npm run ci:test
+      - run: npm run test
         env:
           DATABASE_URL: 'postgresql://root:postgres@localhost:5432/ocean_friend_bd'
