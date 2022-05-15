@@ -1,11 +1,22 @@
-name: Run Tests in my project every push on GitHub
+name: run integration testing
+on:
+ push:
+  branches: [main]
+ pull_request:
+  branches: [main, develop]
+jobs: 
+  integration-test: 
+   runs-on : ubuntu-latest
+   strategy: 
+    matrix:
+     node-version: [17.x]
+    services:
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_USER: andrea
+          POSTGRES_PASSWORD: localPswd
+          POSTGRES_DB: ocean_friend_bd
+        ports:
+          - 5432: 5432
 
-on: [push, pull_request]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Run Jest
-      uses: stefanoeb/jest-action@1.0.3
