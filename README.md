@@ -89,7 +89,6 @@ Los servicios implementados para el proyecto se encuentran en app/services/ los 
 
 **Implementación en Javascript**:
 
-
 ```javascript
 var requestOptions = {
   method: 'GET',
@@ -97,42 +96,48 @@ var requestOptions = {
 };
 ```
 
-
-`fetch("http://localhost:3052/alarms", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error))`
+`fetch("http://localhost:3052/alarms", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error))`
 
 ![1652600612066.png](image/README/1652600612066.png)
 
+**Implementación en Javascript:**
 
+`var requestOptions = {   method: 'GET',   redirect: 'follow' };`
 
-`var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};`
-
-`fetch("http://localhost:3052/alarms/last", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));`
-
+`fetch("http://localhost:3052/alarms/last", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
 
 ![1652600874357.png](image/README/1652600874357.png)
 
+**Implementación en Javascript:**
+
+`var requestOptions = {   method: 'PUT',   body: raw,   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/seen/4", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
+
+![1652601149913.png](image/README/1652601149913.png)
+
+`var requestOptions = {  method: 'PUT',   body: raw,   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/attend/4", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
 
 
-`var requestOptions = {
-  method: 'PUT',
+![1652601389283.png](image/README/1652601389283.png)
+
+var raw = "{\n    \"description\": \"Hay una tortuga que tiene un plástico atorado en su garganta\",\n    \"photo\": \"index12.png\", //nombre de imagen guardada\n    \"location\": \"111.222.333.444.5-\" // Geolocalización que se guardará y pintará en un mapa\n}";
+
+var requestOptions = {
+  method: 'POST',
   body: raw,
   redirect: 'follow'
-};`
+};
 
-`fetch("http://localhost:3052/alarms/seen/4", requestOptions)
+fetch("http://localhost:3052/alarms/create", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
-  .catch(error => console.log('error', error));`
+  .catch(error => console.log('error', error));
 
+
+![1652601403459.png](image/README/1652601403459.png)
 
 ---
 
