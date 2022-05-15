@@ -45,9 +45,8 @@ class AlarmService {
         return { data: updated, isAttended: isAttended.isAttended };
     }
 
-    static async delete(id) {
-        const deleted = await prisma.alarm.delete({ where: { id: id } });
-        console.log(`deleted ${deleted}`)
+    static async delete(idAlarm) {
+        const deleted = await prisma.alarm.delete({ where: { id: idAlarm } });
         return deleted ? true : false;
     }
 }
