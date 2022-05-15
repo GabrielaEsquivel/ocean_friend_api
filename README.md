@@ -116,6 +116,7 @@ var requestOptions = {
 
 ![1652601149913.png](image/README/1652601149913.png)
 
+**Implementación en Javascript:**
 `var requestOptions = {  method: 'PUT',   body: raw,   redirect: 'follow' };`
 
 `fetch("http://localhost:3052/alarms/attend/4", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
@@ -123,21 +124,32 @@ var requestOptions = {
 
 ![1652601389283.png](image/README/1652601389283.png)
 
-var raw = "{\n    \"description\": \"Hay una tortuga que tiene un plástico atorado en su garganta\",\n    \"photo\": \"index12.png\", //nombre de imagen guardada\n    \"location\": \"111.222.333.444.5-\" // Geolocalización que se guardará y pintará en un mapa\n}";
+**Implementación en Javascript:**
 
-var requestOptions = {
+`var raw = "{\n    `
+
+`var requestOptions = {
   method: 'POST',
   body: raw,
   redirect: 'follow'
-};
+}`;
 
-fetch("http://localhost:3052/alarms/create", requestOptions)
+`fetch("http://localhost:3052/alarms/create", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+  .catch(error => console.log('error', error));`
 
 
 ![1652601403459.png](image/README/1652601403459.png)
+
+**Implementación en Javascript:**
+`var requestOptions = {   method: 'DELETE',   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/1", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));`
+
 
 ---
 
