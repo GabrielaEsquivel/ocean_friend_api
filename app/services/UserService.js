@@ -49,6 +49,25 @@ class UserService {
         const deleted = await prisma.user.delete({ where: { id: idUser } });
         return deleted ? true : false;
     }
+
+    async comparePassword(password, userPassword) {
+        return bcrypt.compare(password, userPassword);
+      }
+    
+
+    static async login(user){
+        const userRegistered = await prisma.user.findUnique({where:{id: user.id}});
+        if(!userRegistered){
+            return {message: '¡Ese usuario no está registrado!', login: false};
+        }
+
+        if(this.comparePassword(user.passwd, userRegistered.passwd)){
+            return {message:'Login exitoso.', login: true}
+        }else{
+            return {message: '¡Ese usuario no está registrado!', login: false};
+
+        }
+    }
 }
 
 module.exports = UserService;
