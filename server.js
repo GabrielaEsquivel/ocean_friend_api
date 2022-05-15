@@ -1,5 +1,5 @@
 
-
+const ProyectBeach = require('./app/customVision/ProyectBeach');
 const AlarmController = require('./app/controllers/AlarmController');
 const UserController = require('./app/controllers/UserController');
 
