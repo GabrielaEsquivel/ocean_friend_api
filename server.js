@@ -73,6 +73,10 @@ app.post('/user/login', async (req, res) => {
   return res.json(login);
 });
 
+app.post("/consult", (request, response) => {
+    return response.json(ProyectBeach.consult(request.params.urlImage));
+});
+
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
 });
