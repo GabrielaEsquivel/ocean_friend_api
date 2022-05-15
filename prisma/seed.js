@@ -3,34 +3,24 @@ const prisma = new PrismaClient();
 
 (async function main() {
     try {
-        const alarm = await prisma.alarm.upsert({
-            where: { photo: 'index1.png' },
-            update: {},
-            create: {
-                description: "Hay una tortuga atorada en una red",
-                photo: "index1.png",
-                location: '-125.214.454 324.343.234',
-                isSeen: false,
-                isAttended: false
-            },
-        });
+        const alarm = await prisma.alarm.create({data: {
+            description: "Hay una tortuga atorada en una red",
+            photo: "index7.png",
+            location: '-125.214.454 324.343.234',
+            isSeen: false,
+            isAttended: false
+        }});
 
-        const alarm2 = await prisma.alarm.upsert({
-            where: { photo: 'index2.png' },
-            update: {},
-            create: {
-                description: "Hay una tortuga atorada en una red",
-                photo: "index2.png",
-                location: '-125.214.454 324.343.234',
-                isSeen: false,
-                isAttended: false
-            },
-        });
+        const alarm2 = await prisma.alarm.create({data: {
+            description: "Hay una tortuga atorada en una red",
+            photo: "index2.png",
+            location: '-125.214.454 324.343.234',
+            isSeen: false,
+            isAttended: false
+        }});
 
-        const alarm3 = await prisma.alarm.upsert({
-            where: { photo: 'index3.png' },
-            update: {},
-            create: {
+        const alarm3 = await prisma.alarm.create({
+            data: {
                 description: "Hay una tortuga atorada en una red",
                 photo: "index3.png",
                 location: '-125.214.454 324.343.234',
@@ -39,10 +29,8 @@ const prisma = new PrismaClient();
             },
         });
 
-        const alarm4 = await prisma.alarm.upsert({
-            where: { photo: 'index4.png' },
-            update: {},
-            create: {
+        const alarm4 = await prisma.alarm.create({
+            data: {
                 description: "Hay una tortuga atorada en una red",
                 photo: "index4.png",
                 location: '-125.214.454 324.343.234',
@@ -51,10 +39,8 @@ const prisma = new PrismaClient();
             },
         });
 
-        const alarm5 = await prisma.alarm.upsert({
-            where: { photo: 'index5.png' },
-            update: {},
-            create: {
+        const alarm5 = await prisma.alarm.create({
+            data: {
                 description: "Hay una tortuga atorada en una red",
                 photo: "index5.png",
                 location: '-125.214.454 324.343.234',
@@ -64,27 +50,21 @@ const prisma = new PrismaClient();
         });
         console.log('Create 4 alarms');
 
-        const user1 = await prisma.user.upsert({
-            where: { username: 'GabrielaEsquivel' },
-            update: {},
-            create: {
+        const user1 = await prisma.user.create({
+            data: {
                 username: 'GabrielaEsquivel',
                 passwd: 'admon1234',
             },
         });
 
-        const user2 = await prisma.user.upsert({
-            where: { username: 'Rodrigo' },
-            update: {},
-            create: {
+        const user2 = await prisma.user.create({
+            data: {
                 username: 'RichiOrtega',
                 passwd: 'admon1234',
             },
         });
-        const user3 = await prisma.user.upsert({
-            where: { username: 'LuzLuciano' },
-            update: {},
-            create: {
+        const user3 = await prisma.user.create({
+            data: {
                 username: 'LuzLuciano',
                 passwd: 'admon1234',
             },

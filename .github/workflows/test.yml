@@ -1,42 +1,42 @@
-name: CI
+#name: CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+#on:
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
+#  workflow_dispatch:
 
-jobs:
-  build:
-    name: Build on node ${{ matrix.node-version }} and ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+#jobs:
+#  build:
+#    name: Build on node ${{ matrix.node-version }} and ${{ matrix.os }}
+#    runs-on: ${{ matrix.os }}
+#
+#    strategy:
+#      matrix:
+#        node-version: [16.x]
+#        os: [ubuntu-latest, macOS-latest]
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        os: [ubuntu-latest, macOS-latest]
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 2
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
+#      - name: Set up Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: ${{ matrix.node-version }}
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+#      - name: Install dependencies
+#        run: npm install --legacy-peer-deps
 
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
-
-      - name: Run tests
-        run: npm run test
-        env:
-          DATABASE_URL: "postgresql://andrea:123456@localhost:5432/ocean_friend_bd?schema=public"
+#      - name: Run tests
+#        run: npm run test
+#        env:
+#          DATABASE_URL: "postgresql://andrea:123456@localhost:5432/ocean_friend_bd?schema=public"
 
         # Tried this too, but didn't work.
 
