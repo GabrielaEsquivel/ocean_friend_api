@@ -74,6 +74,8 @@ Las migraciones del presente proyecto se encuentran en **prisma/migrations**.
 #### Modelos
 
 Los modelados de la base de datos quedaron de la siguiente manera:
+
+
 **User** {
 
     Id de tipo numérico autoincremental
@@ -109,6 +111,14 @@ Los modelados de la base de datos quedaron de la siguiente manera:
 }
 
 #### Tablas
+
+Estos son los esquemas de las tablas Alarm y User de la Base de Datos respectivamente.
+
+
+
+![1652603142609.png](image/README/1652603142609.png)
+
+![1652603158864.png](image/README/1652603158864.png)
 
 ---
 
