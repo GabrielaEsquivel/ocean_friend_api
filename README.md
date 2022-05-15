@@ -73,9 +73,40 @@ Las migraciones del presente proyecto se encuentran en **prisma/migrations**.
 
 #### Modelos
 
-User
+Los modelados de la base de datos quedaron de la siguiente manera:
+**User** {
 
-Alarm
+    Id de tipo numérico autoincremental
+
+    username de tipo String y único
+
+    password de tipo String
+
+    dateCreated de tipo Date
+
+    lastUpdatedDateTime de tipo Date
+
+}
+
+**Alarm** {
+
+    Id  de tipo numérico autoincremental
+
+    description de tipo String
+
+    location de tipo String
+
+    photo de tipo String
+
+    isSeen de tipo Boolean
+
+    isAttended de tipo Boolean
+
+    dateCreated de tipo Date
+
+    lastUpdatedDateTime de tipo Date
+
+}
 
 #### Tablas
 
