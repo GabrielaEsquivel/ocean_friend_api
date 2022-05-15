@@ -73,11 +73,52 @@ Las migraciones del presente proyecto se encuentran en **prisma/migrations**.
 
 #### Modelos
 
-User
+Los modelados de la base de datos quedaron de la siguiente manera:
 
-Alarm
+
+**User** {
+
+    Id de tipo numérico autoincremental
+
+    username de tipo String y único
+
+    password de tipo String
+
+    dateCreated de tipo Date
+
+    lastUpdatedDateTime de tipo Date
+
+}
+
+**Alarm** {
+
+    Id  de tipo numérico autoincremental
+
+    description de tipo String
+
+    location de tipo String
+
+    photo de tipo String
+
+    isSeen de tipo Boolean
+
+    isAttended de tipo Boolean
+
+    dateCreated de tipo Date
+
+    lastUpdatedDateTime de tipo Date
+
+}
 
 #### Tablas
+
+Estos son los esquemas de las tablas Alarm y User de la Base de Datos respectivamente.
+
+
+
+![1652603142609.png](image/README/1652603142609.png)
+
+![1652603158864.png](image/README/1652603158864.png)
 
 ---
 
@@ -85,20 +126,82 @@ Alarm
 
 Los servicios implementados para el proyecto se encuentran en app/services/ los cuales pueden consultarse en el siguiente enlace a la documentación de [PostMan](https://documenter.getpostman.com/view/20762518/UyxjF5uh):
 
-https://documenter.getpostman.com/view/20762518/UyxjF5uh
+![1652600559419.png](image/README/1652600559419.png)
+
+**Implementación en Javascript**:
+
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+```
+
+`fetch("http://localhost:3052/alarms", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error))`
+
+![1652600612066.png](image/README/1652600612066.png)
+
+**Implementación en Javascript:**
+
+`var requestOptions = {   method: 'GET',   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/last", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
+
+![1652600874357.png](image/README/1652600874357.png)
+
+**Implementación en Javascript:**
+
+`var requestOptions = {   method: 'PUT',   body: raw,   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/seen/4", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
+
+![1652601149913.png](image/README/1652601149913.png)
+
+**Implementación en Javascript:**
+`var requestOptions = {  method: 'PUT',   body: raw,   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/attend/4", requestOptions)   .then(response => response.text())   .then(result => console.log(result))   .catch(error => console.log('error', error));`
+
+
+![1652601389283.png](image/README/1652601389283.png)
+
+**Implementación en Javascript:**
+
+`var raw = "{\n    `
+
+`var requestOptions = {
+  method: 'POST',
+  body: raw,
+  redirect: 'follow'
+}`;
+
+`fetch("http://localhost:3052/alarms/create", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));`
+
+
+![1652601403459.png](image/README/1652601403459.png)
+
+**Implementación en Javascript:**
+`var requestOptions = {   method: 'DELETE',   redirect: 'follow' };`
+
+`fetch("http://localhost:3052/alarms/1", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));`
+
 
 ---
 
 ### Dependencias
 
-Express
+Las dependencias instaladas en el proyecto se enlistan a continuación:
 
-Prisma
-
-Bcrypt
-
-Jest
-
-Dotenv
+* ***express**:* es un framework escrito en JavaScript y alojado dentro del entorno de ejecución NodeJS que permite crear aplicaciones web.
+* ***jest***: es un marco de prueba para Javascript que permite el desarrollo de pruebas dentro de las aplicaciones.
+* ***bcrypt***: es una función de hashing de passwords diseñado por Niels Provos y David Maxieres. Lleva incorporado un valor llamado  **salt** , que es un fragmento aleatorio que se usará para generar el hash asociado a la password, y se guardará junto con ella en la base de datos. La librería bcrypt nos permite elegir el valor de  **saltRounds** , que nos da el control sobre el coste de procesado de los datos.
+* ***prisma***: Toolkit de base de datos para proyectos con NodeJS. Funciona como un ORM de open-source.
+* ***dotenv***: es un módulo que permite cargar variables de ambiente (de un archivo .env) a través de process.env .
 
 ---
