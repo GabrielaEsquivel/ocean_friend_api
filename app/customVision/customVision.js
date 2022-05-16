@@ -2,7 +2,7 @@ function sendToAzure() {
     const url = document.getElementById("url").value;
 
     $.ajax({
-        url: "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/c2cf7a0b-eebd-406a-a30d-331e2f36b379/detect/iterations/Iteration2/url",      
+        url: "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4bddf632-c842-41d8-b3d3-3a587e530f25/detect/iterations/Iteration1/url",      
         beforeSend: function(keysOfCustomVision){
             keysOfCustomVision.setRequestHeader("Content-Type","application/json");
             keysOfCustomVision.setRequestHeader("Prediction-key","29630d4d71044b4fb7779d173ea3f5f3");
